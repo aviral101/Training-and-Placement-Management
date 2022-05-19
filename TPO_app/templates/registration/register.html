@@ -23,6 +23,8 @@
                 <form action="" method="POST" class="form-group">
                     {% csrf_token %}
                     {{form|bulma}}
+                    <script src='https://www.google.com/recaptcha/api.js'></script>
+            <div class="g-recaptcha" data-sitekey="6LfIYgEgAAAAAJgiSxu45b02FGvoVU7Hwu9zPFMR"></div>
                     <button type="submit" class="button is-success is-light "><strong><i class="fas fa-user-plus"></i>  Register</strong></button>
                 </form>
             </p>

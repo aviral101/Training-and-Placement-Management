@@ -1,6 +1,11 @@
+import json
+import urllib
+
 from django.shortcuts import render,redirect
 from django.contrib.auth.forms import UserCreationForm,AuthenticationForm
 from django.contrib.auth.models import User
+
+from TPO_website import settings
 from .forms import RegisterForm
 from django.contrib import messages
 from django.contrib.auth import login, logout, authenticate
@@ -28,17 +33,32 @@ def login_request(request):
     if request.method == "POST":
         form = AuthenticationForm(request, request.POST)
         if form.is_valid():
-            username = form.cleaned_data.get("username")
-            password = form.cleaned_data.get("password")
-            user = authenticate(username=username, password=password)
-            if user is not None:
-                login(request, user)
-                messages.info(request, f"You are now logged in as {username}")
-                return redirect("/")
+            recaptcha_response = request.POST.get('g-recaptcha-response')
+            url = 'https://www.google.com/recaptcha/api/siteverify'
+            values = {
+                'secret': settings.GOOGLE_RECAPTCHA_SECRET_KEY, 'response': recaptcha_response }
+            data = urllib.parse.urlencode(values).encode()
+            req = urllib.request.Request(url, data=data)
+            response = urllib.request.urlopen(req)
+            result = json.loads(response.read().decode())
+
+            if result['success']:
+                username = form.cleaned_data.get("username")
+                password = form.cleaned_data.get("password")
+                user = authenticate(username=username, password=password)
+                if user is not None:
+                    login(request, user)
+                    messages.info(request, "You are now logged in as "+username)
+                    return redirect("/")
+                else:
+                    messages.error(request, "Invalid username or password")
+                    return redirect("login")
             else:
-                messages.error(request, "Invalid username or password")
+                messages.error(request,'Invalid reCAPTCHA. Please try again.')
+                return redirect("login")
         else:
             messages.error(request, "Invalid username or password")
+            return redirect("login")
     form = AuthenticationForm()
     return render(request, "registration/login.html",{"form": form})
 

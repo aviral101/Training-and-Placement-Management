@@ -27,6 +27,9 @@
                 {% csrf_token %}
                 {{form |bulma}}
                 <p>Don't have an account? Create one <a href="/register">here</a></p><br>
+            <script src='https://www.google.com/recaptcha/api.js'></script>
+            <div class="g-recaptcha" data-sitekey="6LfIYgEgAAAAAJgiSxu45b02FGvoVU7Hwu9zPFMR"></div>
+            <br>
                 <button type="submit" class="button is-danger is-light "><strong><i class="fas fa-sign-in-alt"></i>  Login</strong></button>
             </form>
             </p>
