@@ -36,20 +36,5 @@
         </div>
     </div>
 </div>
-<!-- <div class="tile is-ancestor">
-        <div class="tile is-parent">
-            <div class="tile is-child box">
-                <p class="title">Log In</p>
-                <p>
-                    <form action="" method="post"class="form-group">
-                        {% csrf_token %}
-                        {{form |bulma}}
-                        <p>Don't have an account? Create one <a href="/register">here</a></p>
-                        <button type="submit" class="button is-danger is-light is-rounded"><strong>Login</strong></button>
-                    </form>
-                </p>
-            </div>
-        </div>
-    </div>
-        -->
+{% include 'includes/messages.html' %}
 {% endblock %}

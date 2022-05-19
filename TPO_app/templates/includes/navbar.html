@@ -1,4 +1,12 @@
-<nav class="navbar" role="navigation" aria-label="main navigation">
+<style>
+.navbar-start .navbar-item:hover
+{
+    background-color:#92a531;
+    color:white;
+
+}
+</style>
+<nav class="navbar" role="navigation" aria-label="main navigation" style="position: -webkit-sticky; position: sticky; top: 0;">
     <div class="navbar-brand">
         <a class="navbar-item" href="">
             <!-- <img src="" width="112" height="28"> -->
@@ -13,19 +21,19 @@
 
     <div id="navbarBasicExample" class="navbar-menu">
         <div class="navbar-start">
-            <a class="navbar-item" href="/">
+            <a class="navbar-item" href="/" >
                 <strong>Home</strong>
             </a>
-            <a class="navbar-item" href="/#about" id="button">
+            <a class="navbar-item" href="/#about" id="button" >
                 <strong>Objectives</strong>
             </a>
-            <a class="navbar-item" href="/#events" id=button1>
+            <a class="navbar-item" href="/#events" id=button1 >
                 <strong>Events</strong>
             </a>
             <a class="navbar-item" href="/Statistics" >
                 <strong>Stats</strong>
             </a>
-            <a class="navbar-item" href="/companies" >
+            <a class="navbar-item" href="/companies">
                 <strong>Companies</strong>
             </a>
     
@@ -36,7 +44,7 @@
             <div class="navbar-item">
                 <div class="buttons" style="margin-right:20px;">
                     <a class="button is-primary is-light " href="/" style="background-color:#92a531;">
-                    <strong><i class="fa fa-user" aria-hidden="true" style="color:white;"></i> {{user.username}}</strong>
+                    <strong style="color:white;"><i class="fa fa-user" aria-hidden="true" "></i> {{user.username}}</strong>
                     </a>
                     <a class="button is-light" href="/logout">
                         <strong>Log out</strong>
