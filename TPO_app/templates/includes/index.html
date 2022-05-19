@@ -9,180 +9,8 @@
     <link href="{% static 'css/top.css' %}" rel="stylesheet">
     <link href="{% static 'css/footer.css' %}" rel="stylesheet">
     <link href="{% static 'css/chat.css' %}" rel="stylesheet">
-    <style>
-        .site-footer
-{
-  background-color:#26272b;
-  padding:45px 0 20px;
-  font-size:15px;
-  line-height:24px;
-  color:#737373;
-}
-.site-footer hr
-{
-  border-top-color:#bbb;
-  opacity:0.5
-}
-.site-footer hr.small
-{
-  margin:20px 0
-}
-.site-footer h6
-{
-  color:#fff;
-  font-size:16px;
-  text-transform:uppercase;
-  margin-top:5px;
-  letter-spacing:2px
-}
-.site-footer a
-{
-  color:#737373;
-}
-.site-footer a:hover
-{
-  color:#3366cc;
-  text-decoration:none;
-}
-.footer-links
-{
-  padding-left:0;
-  list-style:none
-}
-.footer-links li
-{
-  display:block
-}
-.footer-links a
-{
-  color:#737373
-}
-.footer-links a:active,.footer-links a:focus,.footer-links a:hover
-{
-  color:#3366cc;
-  text-decoration:none;
-}
-.footer-links.inline li
-{
-  display:inline-block
-}
-.site-footer .social-icons
-{
-  text-align:right
-}
-.site-footer .social-icons a
-{
-  width:40px;
-  height:40px;
-  line-height:40px;
-  margin-left:6px;
-  margin-right:0;
-  border-radius:100%;
-  background-color:#33353d
-}
-.copyright-text
-{
-  margin:0
-}
-@media (max-width:991px)
-{
-  .site-footer [class^=col-]
-  {
-    margin-bottom:30px
-  }
-}
-@media (max-width:767px)
-{
-  .site-footer
-  {
-    padding-bottom:0
-  }
-  .site-footer .copyright-text,.site-footer .social-icons
-  {
-    text-align:center
-  }
-}
-.social-icons
-{
-  padding-left:0;
-  margin-bottom:0;
-  list-style:none
-}
-.social-icons li
-{
-  display:inline-block;
-  margin-bottom:4px
-}
-.social-icons li.title
-{
-  margin-right:15px;
-  text-transform:uppercase;
-  color:#96a2b2;
-  font-weight:700;
-  font-size:13px
-}
-.social-icons a{
-  background-color:#eceeef;
-  color:#818a91;
-  font-size:16px;
-  display:inline-block;
-  line-height:44px;
-  width:44px;
-  height:44px;
-  text-align:center;
-  margin-right:8px;
-  border-radius:100%;
-  -webkit-transition:all .2s linear;
-  -o-transition:all .2s linear;
-  transition:all .2s linear
-}
-.social-icons a:active,.social-icons a:focus,.social-icons a:hover
-{
-  color:#fff;
-  background-color:#29aafe
-}
-.social-icons.size-sm a
-{
-  line-height:34px;
-  height:34px;
-  width:34px;
-  font-size:14px
-}
-.social-icons a.facebook:hover
-{
-  background-color:#3b5998
-}
-.social-icons a.twitter:hover
-{
-  background-color:#00aced
-}
-.social-icons a.linkedin:hover
-{
-  background-color:#007bb6
-}
-.social-icons a.dribbble:hover
-{
-  background-color:#ea4c89
-}
-@media (max-width:767px)
-{
-  .social-icons li.title
-  {
-    display:block;
-    margin-right:0;
-    font-weight:600
-  }
-}
-    </style>
-    <link href="https://fonts.googleapis.com/css?family=Cabin&display=swap" rel="stylesheet">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <link href="{% static 'images/logo.png' %}" rel="icon" />
-    <link href="{% static 'css/style.css' %}" rel="stylesheet" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
-    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body>
@@ -326,54 +154,43 @@
                     onclick="closeForm()"><strong>Close</strong></button>
             </form>
         </div>
-          <!-- Site footer -->
-    <!-- Site footer -->
-    <footer class="site-footer">
-      <div class="container">
-        <div class="row">
-          <div class="col-sm-12 col-md-6">
-            <h6>About Spamator</h6>
-            <p class="text-justify">Spamator is an initiative  to help the users indentify whether a SMS is a spam or a legitimate message. To solve this problem, we proposed a spam filtering method using Naïve Bayes classification Algorithm which can be
-implemented as a web application to filter incoming messages into spam and ham.  </p>
-          </div>
-
-          <div class="col-xs-6 col-md-3">
-              <h6>Spam-Classifier</h6>
-            <ul class="footer-links">
-              <li>Machine Learning Project</li>
-              <li>B.tech 3rd year (5th Semester)</li>
-              <li>Department of CSE</li>
-              <li>KNIT, Sultanpur.</li>
-            </ul>
-          </div>
-
-          <div class="col-xs-6 col-md-3">
-            <ul class="footer-links">
-                <li>Pankaj Kumar - 18230</li>
-            </ul>
-          </div>
-        </div>
-        <hr>
-      </div>
-      <div class="container">
-        <div class="row">
-          <div class="col-md-8 col-sm-6 col-xs-12">
-            <p class="copyright-text">Copyright &copy; 2020 All Rights Reserved by
-                Spamator
-            </p>
-          </div>
-
-          <div class="col-md-4 col-sm-6 col-xs-12">
-            <ul class="social-icons">
-              <li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
-              <li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a></li>
-              <li><a class="dribbble" href="#"><i class="fa fa-dribbble"></i></a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-</footer><br>
+        <br>
     </div>
+    <footer>
+   <div class="content">
+     <div class="left box">
+       <div class="upper">
+         <br><div class="topic">Kamla Nehru Institute of Technology, Sultanpur (U.P.)</div>
+         <p><i class="fa-solid fa-location-dot"></i> Sultanpur - Kadipur Rd, Sultanpur
+            Uttar Pradesh 228118</p>
+       </div>
+       <div class="lower"><br>
+         <div class="topic">Contact us</div>
+         <div class="phone">
+           <a href="#"><i class="fas fa-phone-volume"></i>  05362 240 454</a>
+         </div>
+         <div class="email">
+           <a href="#"><i class="fas fa-envelope"></i>  info@knit.ac.in</a>
+         </div>
+       </div>
+     </div>
+     <div class="middle box">
+       <br><div class="topic">Our Team</div>
+       <div class="team">Aviral Singh - 18216</div>
+       <div class="team">Vijay Kumar Saroj -18259</div>
+       <div class="team">Vivek Verma - 18261</div>
+     </div>
+     <div class="right box">
+        <img src="{% static 'images/KNITlogo.png' %}" height="260px" width="260px" style="display:block; margin-left:auto; margin-right:auto;"/>
+         </div>
+       </form>
+     </div>
+   </div>
+   <div class="bottom">
+     <p>Copyright © 2022 <a href="https://knit.ac.in">Kamla Nehru Institute of Technology</a> All rights reserved</p>
+   </div>
+ </footer>
+
     <!-- JS FILES -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.js'></script>
