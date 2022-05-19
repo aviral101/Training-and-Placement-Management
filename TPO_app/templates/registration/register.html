@@ -15,6 +15,7 @@
                       </figure>
                   </div>
               </article>
+    {% include 'includes/messages.html' %}
       </div>
       <div class="tile is-parent">
           <div class="tile is-child box">
@@ -24,26 +25,11 @@
                     {% csrf_token %}
                     {{form|bulma}}
                     <script src='https://www.google.com/recaptcha/api.js'></script>
-            <div class="g-recaptcha" data-sitekey="6LfIYgEgAAAAAJgiSxu45b02FGvoVU7Hwu9zPFMR"></div>
+            <div class="g-recaptcha" data-sitekey="6LfIYgEgAAAAAJgiSxu45b02FGvoVU7Hwu9zPFMR"></div><br>
                     <button type="submit" class="button is-success is-light "><strong><i class="fas fa-user-plus"></i>  Register</strong></button>
                 </form>
             </p>
           </div>
       </div>
     </div>
-    <!-- <div class="tile is-ancestor">
-        <div class="tile is-parent">
-          <div class="tile is-child box">
-            <p class="title">Sign Up</p>
-            <p>
-                <form action="" method="POST" class="form-group">
-                    {% csrf_token %}
-                    {{form|bulma}}
-                    <button type="submit" class="button is-success is-light is-rounded"><strong>Register</strong></button>
-                </form>
-            </p>
-          </div>
-        </div>
-      </div> -->
-            
     {% endblock %}

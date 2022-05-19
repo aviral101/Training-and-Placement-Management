@@ -17,16 +17,32 @@ def index(request):
     return render(request, 'includes/index.html')
 
 def register_page(request):
-    if request.method == 'POST':
-        form = RegisterForm(request.POST)
-        if form.is_valid():
-            form.save()
-            messages.success(request, 'You are successfully registered.')
+    if request.user.is_authenticated:
+        messages.error(request,"You are already logged in.")
         return redirect("/")
     else:
-        form = RegisterForm()
-        
-    return render(request, "registration/register.html", {"form":form})
+        if request.method == 'POST':
+            form = RegisterForm(request.POST)
+            if form.is_valid():
+                recaptcha_response = request.POST.get('g-recaptcha-response')
+                url = 'https://www.google.com/recaptcha/api/siteverify'
+                values = {
+                    'secret': settings.GOOGLE_RECAPTCHA_SECRET_KEY, 'response': recaptcha_response}
+                data = urllib.parse.urlencode(values).encode()
+                req = urllib.request.Request(url, data=data)
+                response = urllib.request.urlopen(req)
+                result = json.loads(response.read().decode())
+                if result['success']:
+                        form.save()
+                        messages.success(request, 'You are successfully registered.')
+                        return redirect("/")
+                else:
+                    messages.error(request, "Invalid reCAPTCHA. Please try again.")
+                    return redirect("register_page")
+        else:
+            form = RegisterForm()
+
+        return render(request, "registration/register.html", {"form":form})
 
 
 def login_request(request):

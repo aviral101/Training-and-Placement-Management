@@ -1,7 +1,6 @@
 {% if messages %}
         {% for message in messages %}
             {% if message.tags == 'success'%}
-                
                 <div class="notification is-success is-light">
                     <button class="delete" onclick="this.parentElement.style.display='none'"></button>
                     <strong>{{message}}</strong>
@@ -12,12 +11,12 @@
                     <strong>{{message}}</strong>
                 </div>
             {% elif message.tags == 'warning'%}
-                <div class="notification is-warning is-light">
+                <div class="notification is-danger is-light">
                     <button class="delete" onclick="this.parentElement.style.display='none'"></button>
                     <strong>{{message}}</strong>
                 </div>
             {% elif message.tags == 'error'%}
-                <div class="notification is-warning is-light">
+                <div class="notification is-danger is-light">
                     <button class="delete" onclick="this.parentElement.style.display='none'"></button>
                     <strong>{{message}}</strong>
                 </div>
