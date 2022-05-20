@@ -16,6 +16,9 @@ from .models import StudentInfo, JobInfo, EventInfo, CompanyInfo
 def index(request):
     return render(request, 'includes/index.html')
 
+def update_details(request):
+    return render(request, 'includes/update_details.html')
+
 def register_page(request):
     if request.user.is_authenticated:
         messages.error(request,"You are already logged in.")

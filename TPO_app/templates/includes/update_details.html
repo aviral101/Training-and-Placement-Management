@@ -1,0 +1,95 @@
+{% extends "includes/index.html" %}
+{% include 'includes/messages.html' %}
+
+{% load bulma_tags %}
+{% load static %}
+<link href="{% static '/css/styles.css' %}" rel="stylesheet">
+<title>{% block title%}Add Companies{% endblock %}</title>
+{% block content %}
+<br>
+<div class="tile is-ancestor">
+    <div class="tile is-6 is-vertical is-parent">
+        <div class="tile is-child box">
+            <figure class="image is-4by3">
+                <img src="{% static 'images/register_student.svg'%}" alt="Event 1">
+            </figure>
+        </div>
+    </div>
+    <div class="tile is-parent">
+        <div class="tile is-child box">
+            <p class="title">Update User Details:</p>
+            <form action="/add_company_submit/" method="POST">
+                {% csrf_token %}
+
+                <div class="field">
+                    <label class="label">Username</label>
+                    <div class="control">
+                        <input class="input " type="text" placeholder="" style="background-color:lightgrey;" value="{{ user.username }}" name="cname" readonly="readonly">
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label">Email Address</label>
+                    <div class="control">
+                        <input class="input" type="email" placeholder="" name="role" style="background-color:lightgrey;" value="{{ user.email }}" readonly="readonly">
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label">Full Name</label>
+                    <div class="control">
+                        <input class="input" type="text" placeholder="" name="salary">
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label">Collage Name</label>
+                    <div class="control">
+                        <input class="input" type="email" placeholder="" name="role" value="">
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label">Overall CGPA</label>
+                    <div class="control">
+                        <input class="input" type="email" placeholder="" name="role" value="">
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label">Class 10th Percentage</label>
+                    <div class="control">
+                        <input class="input" type="email" placeholder="" name="role" value="">
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label">Class 12th percentage</label>
+                    <div class="control">
+                        <input class="input" type="email" placeholder="" name="role" value="">
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label">Mobile Number</label>
+                    <div class="control">
+                        <input class="input" type="email" placeholder="" name="role" value="">
+                    </div>
+                </div><br>
+                <div class="file has-name">
+                    <label class="file-label">
+                        <input class="file-input" type="file" name="resume">
+                        <span class="file-cta">
+                            <span class="file-icon">
+                                <i class="fas fa-upload"></i>
+                            </span>
+                            <span class="file-label">
+                                Choose a file…
+                            </span>
+                        </span>
+                        <span class="file-name">
+                            Resume.pdf
+                        </span>
+                    </label>
+                </div>
+                <br>
+
+                <button type="submit" class="button is-primary is-light"><strong>Save</strong></button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

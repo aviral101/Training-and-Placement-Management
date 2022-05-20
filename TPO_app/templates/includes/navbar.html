@@ -36,6 +36,11 @@
             <a class="navbar-item" href="/companies">
                 <strong>Companies</strong>
             </a>
+            {% if user.is_authenticated %}
+            <a class="navbar-item" href="/update_details">
+                <strong>Update Details</strong>
+            </a>
+            {% endif %}
     
     </div>
             

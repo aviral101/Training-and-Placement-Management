@@ -20,6 +20,7 @@ urlpatterns = [
     path('add_company/', views.add_company, name= "add_company"),
     path('add_company_submit/', views.add_company_submit, name= "add_company_submit"),
     path('Statistics/', views.Statistics, name= "Statistics"),
-    
+    path('update_details/', views.update_details, name= "update_details"),
+
     
 ]
