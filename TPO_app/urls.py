@@ -21,6 +21,8 @@ urlpatterns = [
     path('add_company_submit/', views.add_company_submit, name= "add_company_submit"),
     path('Statistics/', views.Statistics, name= "Statistics"),
     path('update_details/', views.update_details, name= "update_details"),
+    path('update_user_details/', views.update_user_details, name= "update_user_details"),
+    path('fill_details/', views.fill_details, name= "fill_details"),
 
     
 ]

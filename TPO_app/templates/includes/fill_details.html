@@ -1,23 +1,31 @@
-{% extends "includes/index.html" %}
-
 {% load bulma_tags %}
 {% load static %}
 <link href="{% static '/css/styles.css' %}" rel="stylesheet">
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <link href="{% static 'css/styles.css' %}" rel="stylesheet">
+    <link href="{% static 'css/top.css' %}" rel="stylesheet">
+    <link href="{% static 'css/footer.css' %}" rel="stylesheet">
+    <link href="{% static 'css/chat.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <title>{% block title%}Update Details{% endblock %}</title>
 {% block content %}
 <br>
+
+<p class="title" align="center">Fill User Details</p><br>
 <div class="tile is-ancestor">
-    <div class="tile is-6 is-vertical is-parent">
+    <div class="tile is-6 is-vertical is-parent"><br>
         <div class="tile is-child box">
             <figure class="image is-4by3">
                 <img src="{% static 'images/register_student.svg'%}" alt="Event 1">
             </figure>
         </div>
-        {% include 'includes/messages.html' %}
     </div>
     <div class="tile is-parent">
         <div class="tile is-child box">
-            <p class="title">Update User Details:</p>
             <form action="/update_user_details/" method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
 

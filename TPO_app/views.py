@@ -11,13 +11,29 @@ from django.contrib import messages
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
 from .models import StudentInfo, JobInfo, EventInfo, CompanyInfo
+from django.core.exceptions import ObjectDoesNotExist
 
 # Create your views here.
 def index(request):
     return render(request, 'includes/index.html')
 
+
+@login_required(login_url='/login/')
 def update_details(request):
-    return render(request, 'includes/update_details.html')
+    uname = request.user
+    try:
+        form = StudentInfo.objects.get(uname = uname);
+        if form is not None:
+            return render(request, 'includes/update_details.html', {'form': form})
+        else:
+            return render(request, 'includes/update_details.html')
+    except ObjectDoesNotExist:
+        return render(request, 'includes/update_details.html')
+
+@login_required(login_url='/login/')
+def fill_details(request):
+    return render(request, 'includes/fill_details.html')
+
 
 def register_page(request):
     if request.user.is_authenticated:
@@ -71,8 +87,14 @@ def login_request(request):
                     user = authenticate(username=username, password=password)
                     if user is not None:
                         login(request, user)
-                        messages.info(request, "You are now logged in as "+username)
-                        return redirect("/")
+                        try:
+                            li = StudentInfo.objects.get(uname=username)
+                            if li is not None:
+                                return redirect("/")
+                            else:
+                                return redirect('fill_details')
+                        except ObjectDoesNotExist:
+                            return redirect('fill_details')
                     else:
                         messages.error(request, "Invalid username or password")
                         return redirect("login")
@@ -89,7 +111,6 @@ def login_request(request):
 
 def logout_request(request):
     logout(request)
-    messages.info(request, "Logged out successfully!")
     return redirect("/")
 
 @login_required(login_url='/login/')
@@ -157,6 +178,26 @@ def upcoming_events_submit(request):
 def add_company(request):
     return render(request,'includes/add_company.html')
 
+
+@login_required(login_url='/login/')
+def update_user_details(request):
+    if request.method== "POST":
+        uname = request.POST['uname']
+        email = request.POST['email']
+        fname = request.POST['fname']
+        colname = request.POST['colname']
+        cgpa = request.POST['cgpa']
+        tenth = request.POST['tenth']
+        twelth = request.POST['twelth']
+        phoneno = request.POST['phoneno']
+        resume = request.FILES['resume']
+        li = StudentInfo(uname = uname, email = email, fname=fname,colname=colname,cgpa=cgpa,tenth=tenth,twelth=twelth, phoneno=phoneno, resume=resume)
+        li.save()
+        form = StudentInfo()
+        messages.success(request, 'Your Details were successfully updated')
+        return render(request,'includes/index.html', {'form': form})
+    else:
+        return render(request,'/')
 
 def add_company_submit(request):
     print(request.POST['cname'])
