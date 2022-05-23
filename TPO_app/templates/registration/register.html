@@ -23,6 +23,15 @@
             <p>
                 <form action="" method="POST" class="form-group">
                     {% csrf_token %}
+<!--                      <div class="field">-->
+<!--                            <label class="label">User Type</label>-->
+<!--                            <div class="control">-->
+<!--                                <input class="radio" type="radio" name="user_type" value="student">-->
+<!--                                <label>Student</label>&nbsp &nbsp-->
+<!--                                <input class="radio" type="radio" name="user_type" value="company">-->
+<!--                                <label>Company</label>-->
+<!--                            </div>-->
+<!--                        </div>-->
                     {{form|bulma}}
                     <script src='https://www.google.com/recaptcha/api.js'></script>
             <div class="g-recaptcha" data-sitekey="6LfIYgEgAAAAAJgiSxu45b02FGvoVU7Hwu9zPFMR"></div><br>

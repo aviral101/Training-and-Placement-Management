@@ -1,16 +1,17 @@
 import json
 import urllib
 
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,reverse
 from django.contrib.auth.forms import UserCreationForm,AuthenticationForm
 from django.contrib.auth.models import User
+from django.contrib.auth.hashers import make_password, check_password
 
 from TPO_website import settings
 from .forms import RegisterForm
 from django.contrib import messages
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
-from .models import StudentInfo, JobInfo, EventInfo, CompanyInfo
+from .models import StudentInfo, JobInfo, EventInfo, CompanyInfo, CompanyLogin
 from django.core.exceptions import ObjectDoesNotExist
 
 # Create your views here.
@@ -52,6 +53,19 @@ def register_page(request):
                 response = urllib.request.urlopen(req)
                 result = json.loads(response.read().decode())
                 if result['success']:
+                    user_type = request.POST['user_type']
+                    if user_type == 'student':
+                        print(user_type)
+                        form.save()
+                        messages.success(request, 'You are successfully registered.')
+                        return redirect("/")
+                    elif user_type == 'company':
+                        name = request.POST['username']
+                        email = request.POST['email']
+                        password = request.POST['password1']
+                        password = make_password(password)
+                        li = CompanyLogin(username = name, email = email, password = password)
+                        li.save()
                         form.save()
                         messages.success(request, 'You are successfully registered.')
                         return redirect("/")
@@ -70,8 +84,10 @@ def login_request(request):
         return redirect("/")
     else:
         if request.method == "POST":
+            user_type = request.POST['user_type']
             form = AuthenticationForm(request, request.POST)
             if form.is_valid():
+                print(user_type)
                 recaptcha_response = request.POST.get('g-recaptcha-response')
                 url = 'https://www.google.com/recaptcha/api/siteverify'
                 values = {
@@ -84,20 +100,33 @@ def login_request(request):
                 if result['success']:
                     username = form.cleaned_data.get("username")
                     password = form.cleaned_data.get("password")
-                    user = authenticate(username=username, password=password)
-                    if user is not None:
-                        login(request, user)
-                        try:
-                            li = StudentInfo.objects.get(uname=username)
-                            if li is not None:
-                                return redirect("/")
-                            else:
+                    user_type = request.POST['user_type']
+                    if user_type == 'student':
+                        user = authenticate(username=username, password=password)
+                        if user is not None:
+                            login(request, user)
+                            try:
+                                li = StudentInfo.objects.get(uname=username)
+                                if li is not None:
+                                    return redirect("/")
+                                else:
+                                    return redirect('fill_details')
+                            except ObjectDoesNotExist:
                                 return redirect('fill_details')
+                        else:
+                            messages.error(request, "Invalid username or password")
+                            return redirect("login")
+                    elif user_type == 'company':
+                        try:
+                            v = CompanyLogin.objects.get(username = username)
+                            b = check_password(password , v.password)
+                            if b is True:
+                                request.session['userid'] = username
+                                return redirect(reverse('company:index'))
                         except ObjectDoesNotExist:
-                            return redirect('fill_details')
-                    else:
-                        messages.error(request, "Invalid username or password")
-                        return redirect("login")
+                            messages.warning(request, 'Incorrect User Id or Password')
+                            return redirect('login')
+                        return render(request, 'includes/index.html')
                 else:
                     messages.error(request,'Invalid reCAPTCHA. Please try again.')
                     return redirect("login")
