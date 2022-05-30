@@ -1,0 +1,29 @@
+{% extends "companyindex.html" %}
+
+
+{% load bulma_tags %}
+{% load static %}
+<link href="{% static '/css/styles.css' %}" rel="stylesheet">
+<title>{% block title%}Applications Recieved{% endblock %}</title>
+{% block content %}
+<br>
+<br>
+<h1 class="title">Delete Account</h1>
+<div class="tile is-parent">
+    <div class="tile is-child box">
+<form action="{% url 'company:confirm_delete' %}" method="POST">
+                {% csrf_token %}
+
+                <div class="field">
+                    <label class="label">Enter Password</label>
+                    <div class="control">
+                        <input class="input " type="password" placeholder="" name="password" required style="width:30em;">
+                    </div>
+                </div>
+
+                <button type="submit" class="button is-primary is-danger" onclick="return confirm('Are you sure you want to delete the account  ?')"><strong>CONFIRM</strong></button>
+</form>
+        </div>
+</div>
+        {% include 'includes/messages.html' %}
+            {% endblock %}

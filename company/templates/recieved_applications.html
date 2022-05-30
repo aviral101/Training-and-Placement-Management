@@ -1,0 +1,44 @@
+{% extends "companyindex.html" %}
+
+
+{% load bulma_tags %}
+{% load static %}
+<link href="{% static '/css/styles.css' %}" rel="stylesheet">
+<title>{% block title%}Applications Recieved{% endblock %}</title>
+{% block content %}
+<br>
+<br>
+<h1 class="title">APPLICATIONS RECIEVED</h1>
+
+<div class="tile is-ancestor mt-6" style="display:flex; flex-wrap:wrap; justify-content:space-around;">
+                        {% for li in l %}
+                        <div class="card mx-4" style="margin:20px;">
+                            <div class="card-content">
+                                <div class="content">
+                                    <p>Name: <strong>{{ li.fname }}</strong> </p>
+                                    <p>Email: <strong>{{ li.email }}</strong></p>
+                                    <p>Phone No.: <strong>{{ li.phoneno }}</strong></p>
+                                    <p>CGPA: <strong>{{ li.cgpa }}</strong></p>
+                                    <p>Class 10th percentage: <strong>{{ li.tenth }}</strong></p>
+                                    <p>Class 12th percentage: <strong>{{ li.twelth }}</strong></p>
+                                     <div class="file has-name">
+                                    <a href="{{ li.resume.url }}" download="{{ li.resume.url }}"><button class="button is-light is-outlined is-pulled-right"><label class="file-label">
+                                        <span class="file-cta">
+                                            <span class="file-icon">
+                                                <i class="fas fa-download"></i>
+                                            </span>
+                                            <span class="file-label">
+                                                Download Resume
+                                            </span>
+                                        </span>
+                                    </label></button></a>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+    </div>
+
+
+        {% include 'includes/messages.html' %}
+            {% endblock %}

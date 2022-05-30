@@ -1,0 +1,55 @@
+{% extends "companyindex.html" %}
+
+{% load bulma_tags %}
+{% load static %}
+<link href="{% static '/css/styles.css' %}" rel="stylesheet">
+<title>{% block title%}Upload Result{% endblock %}</title>
+<style>
+    input[type=file] {
+  display: none
+}
+
+.choosefile, .fileuploadspan {
+  font-family: "Comic Sans MS"
+}
+</style>
+{% block content %}
+<br>
+<div class="tile is-ancestor">
+    <div class="tile is-parent">
+        <div class="tile is-child box">
+            <p class="title">Upload Result:</p>
+            <form action="{% url 'company:save_result' %}" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <br>
+                <div class="file has-name">
+                    <label class="file-label">
+                        <input class="file-input" id="fileInput" type="file" name="result" value="{{ form.brochure }}" required>
+                        <span class="file-cta">
+                            <span class="file-icon">
+                                <i class="fas fa-upload"></i>
+                            </span>
+                            <span class="file-label">
+                                Choose a file…
+                            </span>
+                        </span>
+                        <span class="file-name" id="fileuploadspan">
+                            Result.pdf
+                        </span>
+                    </label>
+                </div>
+                <br>
+                <button type="submit" class="button is-primary is-light"><strong>Upload</strong></button>
+            </form>
+        </div>
+    {% include 'includes/messages.html' %}
+    </div>
+</div>
+<script>
+
+$('#fileInput').change(function(e) {
+  var filename = this.files[0].name;
+  $('#fileuploadspan').innerHTML(filename);
+});
+</script>
+{% endblock %}

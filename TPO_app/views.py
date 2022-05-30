@@ -1,17 +1,19 @@
 import json
+import os
 import urllib
 
+from django.http import HttpResponse, Http404
 from django.shortcuts import render,redirect,reverse
 from django.contrib.auth.forms import UserCreationForm,AuthenticationForm
 from django.contrib.auth.models import User
 from django.contrib.auth.hashers import make_password, check_password
-
+from company.models import CompanyInfo, SelectedInfo
 from TPO_website import settings
 from .forms import RegisterForm
 from django.contrib import messages
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
-from .models import StudentInfo, JobInfo, EventInfo, CompanyInfo, CompanyLogin
+from .models import StudentInfo, JobInfo, EventInfo, CompanyLogin
 from django.core.exceptions import ObjectDoesNotExist
 
 # Create your views here.
@@ -122,7 +124,14 @@ def login_request(request):
                             b = check_password(password , v.password)
                             if b is True:
                                 request.session['userid'] = username
-                                return redirect(reverse('company:index'))
+                                try:
+                                    form = CompanyInfo.objects.get(username=username);
+                                    if form is not None:
+                                        return redirect(reverse('company:companyindex'))
+                                    else:
+                                        return redirect(reverse('company:update_company_details'))
+                                except ObjectDoesNotExist:
+                                    return redirect(reverse('company:update_company_details'))
                         except ObjectDoesNotExist:
                             messages.warning(request, 'Incorrect User Id or Password')
                             return redirect('login')
@@ -162,32 +171,23 @@ def register_student_submit(request):
 
 
 def companies(request):
-    return render(request,'includes/company.html')
+    cm =CompanyInfo.objects.filter(application='yes')
+    jb = JobInfo.objects.filter(uname=request.user).values_list('company', flat=True)
+    re = SelectedInfo.objects.all()
+    return render(request,'includes/company.html',{'cm':cm, 'jb':jb, 're':re})
 
 @login_required(login_url='/login/')
 def register_job(request):
-    return render(request,'includes/register_job.html')
-
-def register_job_submit(request):
-    print("Hello form is submitted")
-    print(request.POST['name'])
-    print(request.POST['college'])
-    print(request.POST['company'])
-    print(request.POST['profile'])
-    print(request.POST['graduation'])
-    print(request.POST['phoneno'])
-    name = request.POST['name']
-    email = request.POST['email']
-    phoneno = request.POST['phoneno']
-    college = request.POST['college']
-    graduation = request.POST['graduation']
-    company = request.POST['company']
-    profile = request.POST['profile']
-
-    Job_Info = JobInfo(uname=name, email=email, phoneno=phoneno, college=college, graduation=graduation, company=company, profile=profile)
+    name = request.user
+    cname = request.POST['username']
+    c = CompanyInfo.objects.get(username=cname)
+    company = c.cname
+    Job_Info = JobInfo(uname=name, company=company, cname = cname)
     Job_Info.save()
     messages.success(request, 'Your Application is successfully sent.')
-    return render(request,'includes/register_job.html')
+    cm = CompanyInfo.objects.all()
+    jb = JobInfo.objects.filter(uname = name).values_list('company', flat=True)
+    return render(request, 'includes/company.html', {'cm': cm, 'jb':jb})
 
 def upcoming_events(request):
     return render(request,'includes/upcoming_events.html')
@@ -203,9 +203,6 @@ def upcoming_events_submit(request):
     messages.success(request, 'Your Event is successfully saved.')
     return render(request,'includes/upcoming_events.html')
 
-@login_required(login_url='/login/')
-def add_company(request):
-    return render(request,'includes/add_company.html')
 
 
 @login_required(login_url='/login/')
@@ -228,16 +225,14 @@ def update_user_details(request):
     else:
         return render(request,'/')
 
-def add_company_submit(request):
-    print(request.POST['cname'])
-    cname = request.POST['cname']
-    role = request.POST['role']
-    salary = request.POST['salary']
-    Company_Info = CompanyInfo(cname=cname,role=role,salary=salary)
-    Company_Info.save()
-    messages.success(request, 'Your Company is successfully saved.')
-    return render(request,'includes/add_company.html')
-
+def download(request, path):
+    file_path = os.path.join(settings.MEDIA_ROOT, path)
+    if os.path.exists(file_path):
+        with open(file_path, 'rb') as fh:
+            response = HttpResponse(fh.read(), content_type="application/adminupload")
+            response['Content-Disposition'] = 'inline; filename=' + os.path.basename(file_path)
+            return response
+    raise Http404
 
 def Statistics(request):
     return render(request,'includes/Statistics.html')

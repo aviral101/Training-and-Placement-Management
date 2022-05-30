@@ -1,0 +1,56 @@
+<style>
+.navbar-start .navbar-item:hover
+{
+    background-color:#92a531;
+    color:white;
+
+}
+</style>
+<nav class="navbar" role="navigation" aria-label="main navigation" style="position: -webkit-sticky; position: sticky; top: 0;">
+    <div class="navbar-brand">
+        <a class="navbar-item" href="">
+            <!-- <img src="" width="112" height="28"> -->
+        </a>
+
+        <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+    </div>
+
+    <div id="navbarBasicExample" class="navbar-menu">
+        <div class="navbar-start">
+            <a class="navbar-item" href="{% url 'company:companyindex' %}" >
+                <strong>Home</strong>
+            </a>
+            <a class="navbar-item" href="{% url 'company:stats' %}" >
+                <strong>Stats</strong>
+            </a>
+            <a class="navbar-item" href="{% url 'company:update_company_details' %}">
+                <strong>Update Details</strong>
+            </a>
+            <a class="navbar-item" href="{% url 'company:recieved_applications' %}">
+                <strong>Recieved Applications</strong>
+           </a>
+            <a class="navbar-item" href="{% url 'company:upload_result' %}">
+                <strong>Upload Result</strong>
+            </a>
+            <a class="navbar-item" href="{% url 'company:delete' %}">
+                <strong>Delete account</strong>
+            </a>
+
+    </div>
+
+        <div class="navbar-end">
+            <div class="navbar-item">
+                <div class="buttons" style="margin-right:20px;">
+                    <a class="button is-primary is-light " href="/" style="background-color:#92a531;">
+                    <strong style="color:white;"><i class="fa fa-user" aria-hidden="true" "></i> {{name}}</strong>
+                    </a>
+                    <a class="button is-light" href="{% url 'company:logout' %}">
+                        <strong>Log out</strong>
+                    </a>
+                </div>
+    </div>
+</nav>

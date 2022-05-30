@@ -1,0 +1,102 @@
+NOTE :- Heroku uses PostgreSQL instead of sqlite3 used in django
+               Take backup of you project before starting
+
+
+-->Download and install Git (https://git-scm.com/downloads)
+-->Download and install Heroku CLI :::
+( 64-bit installer : https://cli-assets.heroku.com/heroku-x64.exe)
+(32-bit installer : https://cli-assets.heroku.com/heroku-x86.exe)
+
+-->Create account on Heroku website (https://signup.heroku.com/dc)
+
+login using cmd into your heroku account
+{
+C:\Users\ic pra>heroku login
+}
+-->Remove STATIC_URL='/static/' from settings.py
+
+-->Add folowing code at the end of settings.py after removing :
+
+#-------------------------------------------------------------------------------------------
+
+import django_heroku
+# https://docs.djangoproject.com/en/2.2/howto/static-files/
+
+PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
+
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/1.9/howto/static-files/
+STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
+STATIC_URL = '/static/'
+
+# Extra places for collectstatic to find static files.
+STATICFILES_DIRS = (
+    os.path.join(PROJECT_ROOT, 'static'),
+)
+
+django_heroku.settings(locals())
+
+#----------------------------------------------------------------------------------------------------------------------
+
+
+--> Add a file named 'Procfile' in the directory where manage.py file is located
+(NOTE:Procfile has no extension not even .txt so remove all extensions before saving the file
+If extension is not visible go to views and click on show extensions)
+
+
+Add followng line to Procfile:
+                    web: gunicorn cpo.wsgi
+
+Replace cpo with the name of your project.
+
+
+
+-->Add runtime.txt file to the same directory
+Add following line to the file:
+                    python-3.7.3
+
+OPEN Cmd::::
+
+--> E:\finalproject\py1>Scripts\activate
+-->(py1) E:\finalproject\py1>cd cpo
+-->(py1) E:\finalproject\py1\cpo>pip install gunicorn
+-->(py1) E:\finalproject\py1\cpo>pip install django_heroku
+-->(py1) E:\finalproject\py1\cpo>pip freeze > requirements.txt
+-->(py1) E:\finalproject\py1\cpo>heroku create aviral002
+(You can replace aviral002 with the name you wnat to give to your website)
+-->(py1) E:\finalproject\py1\cpo>git init
+-->(py1) E:\finalproject\py1\cpo>heroku addons:create heroku-postgresql:hobby-dev -a aviral002
+
+
+---->Add following code to settings.py under DATABASES={} :
+
+-----------------------------------------------------------------------------------------------
+import dj_database_url
+
+db_from_env=dj_database_url.config()
+DATABASES['default'].update(db_from_env)
+
+-----------------------------------------------------------------------------------------------
+-->(py1) E:\finalproject\py1\cpo>git status
+-->(py1) E:\finalproject\py1\cpo>git add --all
+-->(py1) E:\finalproject\py1\cpo>git commit -m "First Commit"
+-->(py1) E:\finalproject\py1\cpo>heroku git:remote -a aviral002
+(Replace aviral002 with name of your web)
+-->(py1) E:\finalproject\py1\cpo>ssh-keygen -t rsa
+-->(py1) E:\finalproject\py1\cpo>heroku keys:add
+-->(py1) E:\finalproject\py1\cpo>heroku keys
+-->(py1) E:\finalproject\py1\cpo>git push heroku master
+
+(If heroku push fails then again run the push command after running following 
+commands:
+-->(py1) E:\finalproject\py1\cpo>heroku config:set DISABLE_COLLECTSTATIC=0
+-->(py1) E:\finalproject\py1\cpo>heroku config:set DISABLE_COLLECTSTATIC=1
+)
+
+-->(py1) E:\finalproject\py1\cpo>heroku run python manage.py makemigrations
+-->(py1) E:\finalproject\py1\cpo>heroku run python manage.py migrate
+-->(py1) E:\finalproject\py1\cpo>heroku run python manage.py createsuperuser
+
+
+In case you have made some changes to your files and want to upload them to the server
+start from >git status command and go upto >git push heroku master

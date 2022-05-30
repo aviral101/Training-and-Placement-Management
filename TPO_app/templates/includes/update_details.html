@@ -24,54 +24,54 @@
                 <div class="field">
                     <label class="label">Username</label>
                     <div class="control">
-                        <input class="input " type="text" placeholder="" style="background-color:lightgrey;" value="{{ user.username }}" name="uname" readonly="readonly">
+                        <input class="input " type="text" placeholder="" style="background-color:lightgrey;" value="{{ user.username }}" name="uname" readonly="readonly" required>
                     </div>
                 </div>
                 <div class="field">
                     <label class="label">Email Address</label>
                     <div class="control">
-                        <input class="input" type="email" placeholder="" name="email" style="background-color:lightgrey;" value="{{ user.email }}" readonly="readonly">
+                        <input class="input" type="email" placeholder="" name="email" style="background-color:lightgrey;" value="{{ user.email }}" readonly="readonly" required>
                     </div>
                 </div>
                 <div class="field">
                     <label class="label">Full Name</label>
                     <div class="control">
-                        <input class="input" type="text" placeholder="" name="fname" value="{{ form.fname }}">
+                        <input class="input" type="text" placeholder="" name="fname" value="{{ form.fname }}" required>
                     </div>
                 </div>
                 <div class="field">
                     <label class="label">Collage Name</label>
                     <div class="control">
-                        <input class="input" type="text" placeholder="" name="colname" value="{{ form.colname }}">
+                        <input class="input" type="text" placeholder="" name="colname" value="{{ form.colname }}" required>
                     </div>
                 </div>
                 <div class="field">
                     <label class="label">Overall CGPA</label>
                     <div class="control">
-                        <input class="input" type="text" placeholder="" name="cgpa" value="{{ form.cgpa }}">
+                        <input class="input" type="text" placeholder="" name="cgpa" value="{{ form.cgpa }}" required>
                     </div>
                 </div>
                 <div class="field">
                     <label class="label">Class 10th Percentage</label>
                     <div class="control">
-                        <input class="input" type="text" placeholder="" name="tenth" value="{{ form.tenth }}">
+                        <input class="input" type="text" placeholder="" name="tenth" value="{{ form.tenth }}" required>
                     </div>
                 </div>
                 <div class="field">
                     <label class="label">Class 12th percentage</label>
                     <div class="control">
-                        <input class="input" type="text" placeholder="" name="twelth" value="{{ form.twelth }}">
+                        <input class="input" type="text" placeholder="" name="twelth" value="{{ form.twelth }}" required>
                     </div>
                 </div>
                 <div class="field">
                     <label class="label">Mobile Number</label>
                     <div class="control">
-                        <input class="input" type="number" placeholder="" name="phoneno" value="{{ form.phoneno }}">
+                        <input class="input" type="number" placeholder="" name="phoneno" value="{{ form.phoneno }}" required>
                     </div>
                 </div><br>
                 <div class="file has-name">
                     <label class="file-label">
-                        <input class="file-input" type="file" name="resume" value="{{ form.resume }}">
+                        <input class="file-input" type="file" name="resume" value="{{ form.resume }}" required>
                         <span class="file-cta">
                             <span class="file-icon">
                                 <i class="fas fa-upload"></i>

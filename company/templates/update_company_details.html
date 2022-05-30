@@ -1,0 +1,87 @@
+{% extends "companyindex.html" %}
+
+{% load bulma_tags %}
+{% load static %}
+<link href="{% static '/css/styles.css' %}" rel="stylesheet">
+<title>{% block title%}Update Company Details{% endblock %}</title>
+{% block content %}
+<br>
+<div class="tile is-ancestor">
+    <div class="tile is-6 is-vertical is-parent">
+        <div class="tile is-child box">
+            <figure class="image is-4by3">
+                <img src="{% static 'images/register_student.svg'%}" alt="Event 1">
+            </figure>
+        </div>
+    </div>
+    <div class="tile is-parent">
+        <div class="tile is-child box">
+            <p class="title">Update Company Details:</p>
+            <form action="{% url 'company:save_company_details' %}" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                <div class="field">
+                    <label class="label">Company Name</label>
+                    <div class="control">
+                        <input class="input " type="text" placeholder="" value="{{ form.cname }}" name="cname" required>
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label">Role</label>
+                    <div class="control">
+                        <input class="input" type="text" placeholder="" name="role" value="{{ form.role }}" required>
+                    </div>
+                </div><br>
+                <div class="field">
+                    <label class="label">Recieve Applications</label>
+                    <div class="control">
+                        {% if form.application == 'yes' %}
+                        <input class="radio" type="radio" name="application" value="yes" checked>
+                        <label>Yes</label>&nbsp &nbsp
+                        <input class="radio" type="radio" name="application" value="no">
+                        <label>No</label>
+                        {% else %}
+                        <input class="radio" type="radio" name="application" value="yes">
+                        <label>Yes</label>&nbsp &nbsp
+                        <input class="radio" type="radio" name="application" value="no" checked>
+                        <label>No</label>
+                        {% endif %}
+                    </div>
+                </div><br>
+                <div class="field">
+                    <label class="label">Last Application Date</label>
+                    <div class="control">
+                        <input class="input" type="date" placeholder="dd/mm/yyyy" name="date" value="{{ form.date }}" required>
+                    </div>
+                </div><br>
+                <div class="field">
+                    <label class="label">Salary</label>
+                    <div class="control">
+                        <input class="input" type="text" placeholder="" name="salary" value="{{ form.salary }}" required>
+                    </div>
+                </div><br>
+                <div class="file has-name">
+                    <label class="file-label">
+                        <input class="file-input" type="file" name="brochure" value="{{ form.brochure }}" required>
+                        <span class="file-cta">
+                            <span class="file-icon">
+                                <i class="fas fa-upload"></i>
+                            </span>
+                            <span class="file-label">
+                                Choose a file…
+                            </span>
+                        </span>
+                        <span class="file-name">
+                            Brochure.pdf
+                        </span>
+                    </label>
+                </div>
+                <br>
+
+                <button type="submit" class="button is-primary is-light"><strong>Save</strong></button>
+            </form>
+        </div>
+    {% include 'includes/messages.html' %}
+    </div>
+</div>
+{% endblock %}
