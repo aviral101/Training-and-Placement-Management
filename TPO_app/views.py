@@ -61,7 +61,7 @@ def register_page(request):
                         print(user_type)
                         form.save()
                         messages.success(request, 'You are successfully registered.')
-                        return redirect("/")
+                        return redirect("login")
                     elif user_type == 'company':
                         name = request.POST['username']
                         email = request.POST['email']
@@ -71,7 +71,7 @@ def register_page(request):
                         li.save()
                         form.save()
                         messages.success(request, 'You are successfully registered.')
-                        return redirect("/")
+                        return redirect("login")
                 else:
                     messages.error(request, "Invalid reCAPTCHA. Please try again.")
                     return redirect("register_page")
