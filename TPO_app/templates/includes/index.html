@@ -111,32 +111,30 @@
         <div class="box">
             <p class="title has-text-centered">Highlights</p><br>   
             <section class="level">
-                {% for l in li %}
                 <div class="level-item has-text-centered">
                     <div>
                         <p class="heading is-size-6">Companies Visiting</p>
-                        <p class="title" id="num" data-count="{{ l.visiting }}">0</p>
+                        <p class="title" id="num" data-count="{{ l.0.visiting }}">0</p>
                     </div>
                 </div>
                 <div class="level-item has-text-centered">
                     <div>
                         <p class="heading is-size-6">Highest Package(LPA)</p>
-                        <p class="title" id="num" data-count="{{ l.highest }}">0</p>
+                        <p class="title" id="num" data-count="{{ l.0.highest }}">0</p>
                     </div>
                 </div>
                 <div class="level-item has-text-centered">
                     <div>
                         <p class="heading is-size-6">Average Package(LPA)</p>
-                        <p class="title" data-count="{{ l.average }}">0</p>
+                        <p class="title" data-count="{{ l.0.average }}">0</p>
                     </div>
                 </div>
                 <div class="level-item has-text-centered">
                     <div>
                         <p class="heading is-size-6">Highest Placements(+)</p>
-                        <p class="title" data-count="{{ l.placement }}">0</p>
+                        <p class="title" data-count="{{ l.0.placement }}">0</p>
                     </div>
                 </div>
-                {% endfor %}
             </section>
         </div><br>
         <!-- TOTAL PLACED ENDS -->

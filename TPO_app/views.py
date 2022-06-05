@@ -18,8 +18,8 @@ from django.core.exceptions import ObjectDoesNotExist
 
 # Create your views here.
 def index(request):
-    li = highlight.objects.all()
-    return render(request, 'includes/index.html',{'li':li})
+    l = highlight.objects.all()
+    return render(request, 'includes/index.html',{'l':l})
 
 
 @login_required(login_url='/login/')
