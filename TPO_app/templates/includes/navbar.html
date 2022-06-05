@@ -1,12 +1,83 @@
+{% load static %}
 <style>
+
 .navbar-start .navbar-item:hover
 {
-    background-color:#92a531;
+    background-color:#a7b658;
     color:white;
+}
+.header
+{
+    background-color:#a7b658;
+    color:white;
+    height:12.5vh;
+    width:100%;
+    border: 2px solid transparent;
+}
+.header img
+{
+    margin-top:4px;
+    margin-left:10px;
+}
+.header p
+{
+font-size:2vw;
+//margin-top:1px;
+margin-left:105px;
+font-family:serif;
+text-transform:uppercase;
+word-spacing:7px;
+padding:5px;
+letter-spacing:0px;
+}
 
+.header h2
+{
+margin-left:115px;
+margin-top:-2px;
+//font-family:serif;
+//text-transform:uppercase;
+}
+@media only screen and (max-width:768px)
+{
+.header
+{
+    height:20vh;
+    width:100%;
+    border: 2px solid transparent;
+}
+.header img
+{
+    margin-top:10px;
+    margin-left:10px;
+}
+.header p
+{
+font-size:2vh;
+margin-top:12px;
+margin-left:120px;
+font-family:serif;
+text-transform:uppercase;
+word-spacing:7px;
+padding:5px;
+letter-spacing:0px;
+}
+
+.header h2
+{
+margin-left:130px;
+font-size:1.5vh;
+}
 }
 </style>
-<nav class="navbar" role="navigation" aria-label="main navigation" style="position: -webkit-sticky; position: sticky; top: 0;">
+<div class="header">
+    <div>
+        <img src="{% static 'images/KNITlogo.png' %}" height="82vh" width="82vh" style="float:left;"/>
+    </div>
+    <p >Training and Placement Management Portal</p>
+    <h2>Kamla Nehru Institute of Technology, Sultanpur</h2>
+</div>
+<nav class="navbar" role="navigation" aria-label="main navigation" style="position: -webkit-sticky; position: sticky; top: 0; z-index:100;">
     <div class="navbar-brand">
         <a class="navbar-item" href="">
             <!-- <img src="" width="112" height="28"> -->
@@ -27,7 +98,7 @@
             <a class="navbar-item" href="/#about" id="button" >
                 <strong>Objectives</strong>
             </a>
-            <a class="navbar-item" href="/#events" id=button1 >
+            <a class="navbar-item" href="/#events" id="button1" >
                 <strong>Events</strong>
             </a>
             <a class="navbar-item" href="/Statistics" >
@@ -35,6 +106,9 @@
             </a>
             <a class="navbar-item" href="/companies">
                 <strong>Companies</strong>
+            </a>
+            <a class="navbar-item" href="/companies/#result1" id="button2" >
+                <strong>Results</strong>
             </a>
             {% if user.is_authenticated %}
             <a class="navbar-item" href="/update_details">
@@ -48,7 +122,7 @@
         <div class="navbar-end">
             <div class="navbar-item">
                 <div class="buttons" style="margin-right:20px;">
-                    <a class="button is-primary is-light " href="/" style="background-color:#92a531;">
+                    <a class="button is-primary is-light " href="/" style="background-color:rgba(146, 165, 49, 0.81);">
                     <strong style="color:white;"><i class="fa fa-user" aria-hidden="true" "></i> {{user.username}}</strong>
                     </a>
                     <a class="button is-light" href="/logout">
@@ -57,7 +131,7 @@
                 </div>
                 {% else %}
                 <div class="buttons" style="margin-right:20px;">
-                    <a class="button is-success " href="/register" style="background-color:#92a531;">
+                    <a class="button is-success " href="/register" style="background-color:rgba(146, 165, 49, 0.81);">
                     <strong>Sign up</strong>
                     </a>
                     <a class="button is-light " href="/login">

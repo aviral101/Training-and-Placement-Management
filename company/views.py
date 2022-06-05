@@ -7,7 +7,7 @@ from django.contrib.auth.forms import UserCreationForm,AuthenticationForm
 from django.contrib.auth.models import User
 from django.contrib.auth.hashers import make_password, check_password
 from .models import CompanyInfo, SelectedInfo
-from TPO_app.models import JobInfo, StudentInfo, CompanyLogin
+from TPO_app.models import JobInfo, StudentInfo, CompanyLogin, highlight
 from TPO_website import settings
 from django.contrib import messages
 import os
@@ -21,7 +21,8 @@ def companyindex(request):
     try:
         if request.session['userid']:
             name = request.session.get('userid')
-            return render(request,'companyindex.html', {'name':name})
+            li = highlight.objects.all()
+            return render(request,'companyindex.html', {'name':name, 'li':li})
         else:
             return redirect('login')
     except KeyError:

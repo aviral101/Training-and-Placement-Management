@@ -13,12 +13,13 @@ from .forms import RegisterForm
 from django.contrib import messages
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
-from .models import StudentInfo, JobInfo, EventInfo, CompanyLogin
+from .models import StudentInfo, JobInfo, EventInfo, CompanyLogin, highlight, stat
 from django.core.exceptions import ObjectDoesNotExist
 
 # Create your views here.
 def index(request):
-    return render(request, 'includes/index.html')
+    li = highlight.objects.all()
+    return render(request, 'includes/index.html',{'li':li})
 
 
 @login_required(login_url='/login/')
@@ -233,9 +234,13 @@ def download(request, path):
             response['Content-Disposition'] = 'inline; filename=' + os.path.basename(file_path)
             return response
     raise Http404
+def divide(a,b):
+   product = (int(a) / int(b))*100
+   return(product)
 
 def Statistics(request):
-    return render(request,'includes/Statistics.html')
+    st = stat.objects.all()
+    return render(request,'includes/Statistics.html',{'st':st})
 # def home_supply_submit(request):
 #     print("Hello form is submitted")
 #     companyname = request.POST["companyname"]

@@ -1,3 +1,4 @@
+from django.core.exceptions import ValidationError
 from django.db import models
 
 # Create your models here.
@@ -38,5 +39,33 @@ class EventInfo(models.Model):
     def __str__(self):
         return self.eventname
 
+class highlight(models.Model):
+    visiting = models.CharField(max_length=200)
+    highest = models.CharField(max_length=20)
+    average = models.CharField(max_length=20)
+    placement = models.CharField(max_length=20)
+
+    def save(self, *args, **kwargs):
+        if not self.pk and highlight.objects.exists():
+            # if you'll not check for self.pk
+            # then error will also raised in update of exists model
+            raise ValidationError('There is can be only one Highlight instance')
+        return super(highlight, self).save(*args, **kwargs)
+
+
+class stat(models.Model):
+    year = models.CharField(max_length=20)
+    cs_total = models.CharField(max_length=20)
+    cs = models.CharField(max_length=20)
+    it_total = models.CharField(max_length=20)
+    it = models.CharField(max_length=20)
+    extc_total = models.CharField(max_length=20)
+    extc = models.CharField(max_length=20)
+
+    def save(self,*args,**kwargs):
+        if stat.objects.count() > 2:
+            return ValidationError('No extra enteries can be added')
+        else:
+            super(stat,self).save(*args,**kwargs)
 
 

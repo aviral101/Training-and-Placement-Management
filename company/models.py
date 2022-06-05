@@ -1,3 +1,4 @@
+from django.core.exceptions import ValidationError
 from django.db import models
 from TPO_app.models import CompanyLogin
 
@@ -24,4 +25,5 @@ class SelectedInfo(models.Model):
 
     def __str__(self):
         return self.cname
+
 

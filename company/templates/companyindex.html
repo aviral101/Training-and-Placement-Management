@@ -19,7 +19,7 @@
     <!-- HOME PAGE STARTS -->
     <div class="container">
         {% block content %}
-            <div class="tile is-ancestor">
+        <div class="tile is-ancestor">
             <div class="tile is-vertical is-7">
                 <div class="tile is-parent">
                     <article class="tile is-child">
@@ -45,7 +45,7 @@
                             <a href="#about">
 
                                 <button class="button is-light "
-                                    style="background-color: rgba(105, 0, 255, 0.11);color: #6900FF;"><strong><i
+                                    style="background-color: rgba(146, 165, 49, 0.81);color: white;"><strong><i
                                             class="fas fa-arrow-circle-down"></i> Get
                                         Started</strong></button>
                             </a>
@@ -111,37 +111,40 @@
         <div class="box">
             <p class="title has-text-centered">Highlights</p><br>
             <section class="level">
+                {% for l in li %}
                 <div class="level-item has-text-centered">
                     <div>
                         <p class="heading is-size-6">Companies Visiting</p>
-                        <p class="title" id="num" data-count="84">0</p>
+                        <p class="title" id="num" data-count="{{ l.visiting }}">0</p>
                     </div>
                 </div>
                 <div class="level-item has-text-centered">
                     <div>
                         <p class="heading is-size-6">Highest Package(LPA)</p>
-                        <p class="title" id="num" data-count="18.5">0</p>
+                        <p class="title" id="num" data-count="{{ l.highest }}">0</p>
                     </div>
                 </div>
                 <div class="level-item has-text-centered">
                     <div>
                         <p class="heading is-size-6">Average Package(LPA)</p>
-                        <p class="title" data-count="8">0</p>
+                        <p class="title" data-count="{{ l.average }}">0</p>
                     </div>
                 </div>
                 <div class="level-item has-text-centered">
                     <div>
                         <p class="heading is-size-6">Highest Placements(+)</p>
-                        <p class="title" data-count="600">0</p>
+                        <p class="title" data-count="{{ l.placement }}">0</p>
                     </div>
                 </div>
+                {% endfor %}
             </section>
         </div><br>
+        <!-- TOTAL PLACED ENDS -->
         {% endblock %}
         <a href="javascript:" id="return-to-top"><i class="icon-chevron-up"></i></a>
 
-        <button class="open-button is-size-5" onclick="openForm()" style="color:#6900FF !important;"><strong><i
-                    class="fas fa-comment-alt"></i> Chat</strong></button>
+        <button class="open-button is-size-5" onclick="openForm()" style="background-color: rgba(146, 165, 49,0.55); !important;"><strong><i
+                    class="fas fa-comment-alt" style="color:white;"></i> <span style="color:white;">Chat</span></strong></button>
 
         <div class="chat-popup" id="myForm">
             <form class="form-container">
@@ -150,7 +153,7 @@
                 </iframe>
 
                 <button type="button" class="button cancel is-fullwidth"
-                    style="background-color: rgba(105, 0, 255, 0.11);color:#6900FF;"
+                    style="background-color: rgba(146, 165, 49);color: white;"
                     onclick="closeForm()"><strong>Close</strong></button>
             </form>
         </div>

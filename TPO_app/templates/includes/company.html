@@ -28,17 +28,17 @@
                                     {% if user.is_authenticated %}
                                     {% if c.cname in jb %}
                                     <button class="button is-light is-outlined is-pulled-right"
-                                    style="background-color:darkgreen ;color: white;" disabled><strong><i class="fa fa-check-circle"
+                                    style="background-color:green ;color: white;" disabled><strong><i class="fa fa-check-circle"
                                             aria-hidden="true"></i> Applied</strong></button>
 
                                     {% else %}
                                     <button type="submit" class="button is-light is-outlined mt-3 is-pulled-right"
-                                            style="background-color: rgba(105, 0, 255, 0.11);color: #6900FF;"><strong>Apply
+                                            style="background-color: rgba(146, 165, 49, 0.81);color: white;"><strong>Apply
                                                 Now</strong></button>
                                     {% endif %}
                                     {% else %}
                                     <button type="submit" class="button is-light is-outlined mt-3 is-pulled-right"
-                                            style="background-color: rgba(105, 0, 255, 0.11);color: #6900FF;"><strong>Apply
+                                            style="background-color:rgba(146, 165, 49, 0.81);color: white;"><strong>Apply
                                                 Now</strong></button>
                                     {% endif %}
                                     </form>
@@ -64,7 +64,7 @@
 </div>
 <br><br><br>
 
-<h1 class="title">COMPANIES RESULTS</h1>
+<h1 class="title" id="result1">COMPANIES RESULTS</h1>
 
 <div class="tile is-ancestor mt-6" style="display:flex; flex-wrap:wrap; justify-content:space-around;">
 
@@ -107,6 +107,11 @@
     {
         alert("Downloading starts in 10 seconds....");
     }
+    $("#button2").click(function () {
+            $('html, body').animate({
+                scrollTop: $("#result").offset().top
+            }, 1000);
+        });
 </script>
         {% include 'includes/messages.html' %}
             {% endblock %}
