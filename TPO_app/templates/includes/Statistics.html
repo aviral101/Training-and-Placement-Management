@@ -165,6 +165,143 @@
         crossorigin="anonymous"></script>
     <script src="{% static 'js/Chart.js' %}"></script>
     <script src="{% static 'js/ChartHorizontal.js' %}"></script>
+    <script>
+    Chart.defaults.global.defaultFontFamily = "Lato";
 
+var horizontalBarChart = new Chart(horizontalBarChartCanvas, {
+    type: 'horizontalBar',
+    data: {
+        labels: ["{{ st.0.year }}", "{{ st.1.year }}", "{{ st.2.year }}"],
+        datasets: [{
+            data: [{% widthratio st.0.company_visited 1 1000 %}, {% widthratio st.1.company_visited 1 1000 %}, {% widthratio st.2.company_visited 1 1000 %},],
+            backgroundColor: ["#cc65fe", "#ff6384", "#36a2eb",],
+        }]
+    },
+    options: {
+        tooltips: {
+            enabled: false
+        },
+        responsive: true,
+        legend: {
+            display: false,
+            position: 'bottom',
+            fullWidth: true,
+            labels: {
+                boxWidth: 20,
+                padding: 50
+            }
+        },
+        scales: {
+            yAxes: [{
+                barPercentage: 0.75,
+                gridLines: {
+                    display: true,
+                    drawTicks: true,
+                    drawOnChartArea: false
+                },
+                ticks: {
+                    fontColor: '#555759',
+                    fontFamily: 'Lato',
+                    fontSize: 11
+                }
+
+            }],
+            xAxes: [{
+                gridLines: {
+                    display: true,
+                    drawTicks: false,
+                    tickMarkLength: 4,
+                    drawBorder: false
+                },
+                ticks: {
+                    padding: 5,
+                    beginAtZero: true,
+                    fontColor: '#555759',
+                    fontFamily: 'Lato',
+                    fontSize: 11,
+                    callback: function (label, index, labels) {
+                        return label / 1000;
+                    }
+
+                },
+                scaleLabel: {
+                    display: true,
+                    padding: 10,
+                    fontFamily: 'Lato',
+                    fontColor: '#555759',
+                    fontSize: 16,
+                    fontStyle: 700,
+                    labelString: 'Company Visited'
+                },
+
+            }]
+        }
+    }
+});
+    </script>
+    <script>
+        var DEFAULT_DATASET_SIZE = 4,
+	addedCount = 0,
+	color = Chart.helpers.color;
+
+var months = ["{{ st.0.year }}", "{{ st.1.year }}", "{{ st.2.year }}"];
+
+var chartColors = {
+	red: 'rgb(255, 99, 132)',
+	orange: 'rgb(255, 159, 64)',
+	yellow: 'rgb(255, 205, 86)',
+	green: 'rgb(75, 192, 192)',
+	blue: 'rgb(54, 162, 235)',
+	purple: 'rgb(153, 102, 255)',
+	grey: 'rgb(231,233,237)'
+};
+
+function randomScalingFactor() {
+	return Math.round(Math.random() * 14);
+}
+
+var barData = {
+	labels: ["{{ st.0.year }}", "{{ st.1.year }}", "{{ st.2.year }}" ],
+	datasets: [{
+		label: 'Highest Package',
+		backgroundColor: color(chartColors.red).alpha(0.5).rgbString(),
+		borderColor: chartColors.red,
+		borderWidth: 1,
+		data: [
+			{{ st.0.highest_package }},
+			{{ st.1.highest_package }},
+			{{ st.2.highest_package }},
+		]
+	}, {
+		label: 'Average Package',
+		backgroundColor: color(chartColors.blue).alpha(0.5).rgbString(),
+		borderColor: chartColors.blue,
+		borderWidth: 1,
+		data: [
+			{{ st.0.average_package }},
+			{{ st.1.average_package }},
+			{{ st.2.average_package }},
+		]
+	}]
+
+};
+var index = 5;
+var ctx = document.getElementById("barChart").getContext("2d");
+var myNewChartB = new Chart(ctx, {
+	type: 'bar',
+	data: barData,
+	options: {
+		responsive: true,
+		maintainAspectRation: true,
+		legend: {
+			position: 'top',
+		},
+		title: {
+			display: true,
+			text: '( Last 3 Years Trend )'
+		}
+	}
+});
+    </script>
 
     {% endblock %}
