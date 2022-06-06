@@ -55,6 +55,7 @@ class highlight(models.Model):
 
 class stat(models.Model):
     year = models.CharField(max_length=20)
+    report = models.FileField(null=True)
     cs_total = models.CharField(max_length=20)
     cs = models.CharField(max_length=20)
     it_total = models.CharField(max_length=20)

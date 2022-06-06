@@ -25,38 +25,37 @@
 </div>
 <div class="field is-grouped is-pulled-right">
     <p class="control">
-        <a href="{% static 'images/Placement2016-17.docx' %}" download>
-        
+        <a href="{{ st.0.report.url }}" download="{{ st.0.report.url }}" download>
             <button class="button is-light " style="background-color: rgba(105, 0, 255, 0.11);color: #6900FF;">
                 <strong>
     
-                    Placement Report 2016-17
+                    Placement Report {{ st.0.year }}
                 </strong>
             </button>
         </a>
     </p>
     <p class="control">
-        <a href="{% static 'images/Placement2017-18.docx' %}" download>
-        
+        <a href="{{ st.1.report.url }}" download="{{ st.1.report.url }}" download>
+
             <button class="button is-primary is-light">
                 <strong>
-    
-                    Placement Report 2017-18
+
+                    Placement Report {{ st.1.year }}
                 </strong>
-    
+
             </button>
         </a>
 
     </p>
     <p class="control">
-        <a href="{% static 'images/Placement2018-19.docx' %}" download>
-        
+        <a href="{{ st.2.report.url }}" download="{{ st.2.report.url }}" download>
+
             <button class="button is-danger is-light">
                 <strong>
-    
-                    Placement Report 2018-19
+
+                    Placement Report {{ st.2.year }}
                 </strong>
-    
+
             </button>
         </a>
     </p>
