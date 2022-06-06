@@ -89,21 +89,21 @@
         </div>
         <div class="columns is-mobile">
             <div class="column is-size-4">CS</div>
-            <div class="column title" data-count="290">0</div>
-            <div class="column title" data-count="270">0</div>
-            <div class="column title" data-count="93">0</div>
+            <div class="column title" data-count="{{ st.0.cs_total }}">0</div>
+            <div class="column title" data-count="{{ st.0.cs }}">0</div>
+            <div class="column title" data-count="{% widthratio st.0.cs st.0.cs_total 100 %}">0</div>
         </div>
         <div class="columns is-mobile">
             <div class="column is-size-4">IT</div>
-            <div class="column title" data-count="350">0</div>
-            <div class="column title" data-count="320">0</div>
-            <div class="column title" data-count="91">0</div>
+            <div class="column title" data-count="{{ st.0.it_total }}">0</div>
+            <div class="column title" data-count="{{ st.0.it }}">0</div>
+            <div class="column title" data-count="{% widthratio st.0.it st.0.it_total 100 %}">0</div>
         </div>
         <div class="columns is-mobile">
             <div class="column is-size-4">EXTC</div>
-            <div class="column title" data-count="150">0</div>
-            <div class="column title" data-count="95">0</div>
-            <div class="column title" data-count="63">0</div>
+            <div class="column title" data-count="{{ st.0.extc_total }}">0</div>
+            <div class="column title" data-count="{{ st.0.extc }}">0</div>
+            <div class="column title" data-count="{% widthratio st.0.extc st.0.extc_total 100 %}">0</div>
         </div>
     </div>
     <div id="WebAud" class="content-tab" style="display:none">
@@ -115,21 +115,21 @@
         </div>
         <div class="columns is-mobile">
             <div class="column is-size-4">CS</div>
-            <div class="column title" data-count="260">0</div>
-            <div class="column title" data-count="210">0</div>
-            <div class="column title" data-count="81">0</div>
+            <div class="column title" data-count="{{ st.1.cs_total }}">0</div>
+            <div class="column title" data-count="{{ st.1.cs }}">0</div>
+            <div class="column title" data-count="{% widthratio st.1.cs st.1.cs_total 100 %}">0</div>
         </div>
         <div class="columns is-mobile">
             <div class="column is-size-4">IT</div>
-            <div class="column title" data-count="380">0</div>
-            <div class="column title" data-count="310">0</div>
-            <div class="column title" data-count="81">0</div>
+            <div class="column title" data-count="{{ st.1.it_total }}">0</div>
+            <div class="column title" data-count="{{ st.1.it }}">0</div>
+            <div class="column title" data-count="{% widthratio st.1.it st.1.it_total 100 %}">0</div>
         </div>
         <div class="columns is-mobile">
             <div class="column is-size-4">EXTC</div>
-            <div class="column title" data-count="110">0</div>
-            <div class="column title" data-count="90">0</div>
-            <div class="column title" data-count="81">0</div>
+            <div class="column title" data-count="{{ st.1.extc_total }}">0</div>
+            <div class="column title" data-count="{{ st.1.extc }}">0</div>
+            <div class="column title" data-count="{% widthratio st.1.extc st.1.extc_total 100 %}">0</div>
         </div>
     </div>
     <div id="Support" class="content-tab" style="display:none">
@@ -141,21 +141,21 @@
         </div>
         <div class="columns is-mobile">
             <div class="column is-size-4">CS</div>
-            <div class="column title" data-count="200">0</div>
-            <div class="column title" data-count="140">0</div>
-            <div class="column title" data-count="70">0</div>
+            <div class="column title" data-count="{{ st.2.cs_total }}">0</div>
+            <div class="column title" data-count="{{ st.2.cs }}">0</div>
+            <div class="column title" data-count="{% widthratio st.2.cs st.2.cs_total 100 %}">0</div>
         </div>
         <div class="columns is-mobile">
             <div class="column is-size-4">IT</div>
-            <div class="column title" data-count="260">0</div>
-            <div class="column title" data-count="220">0</div>
-            <div class="column title" data-count="85">0</div>
+            <div class="column title" data-count="{{ st.2.it_total }}">0</div>
+            <div class="column title" data-count="{{ st.2.it }}">0</div>
+            <div class="column title" data-count="{% widthratio st.2.it st.2.it_total 100 %}">0</div>
         </div>
         <div class="columns is-mobile">
             <div class="column is-size-4">EXTC</div>
-            <div class="column title" data-count="170">0</div>
-            <div class="column title" data-count="140">0</div>
-            <div class="column title" data-count="82">0</div>
+            <div class="column title" data-count="{{ st.2.extc_total }}">0</div>
+            <div class="column title" data-count="{{ st.2.extc }}">0</div>
+            <div class="column title" data-count="{% widthratio st.2.extc st.2.extc_total 100 %}">0</div>
         </div>
     </div>
 

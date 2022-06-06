@@ -234,9 +234,7 @@ def download(request, path):
             response['Content-Disposition'] = 'inline; filename=' + os.path.basename(file_path)
             return response
     raise Http404
-def divide(a,b):
-   product = (int(a) / int(b))*100
-   return(product)
+
 
 def Statistics(request):
     st = stat.objects.all()

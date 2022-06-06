@@ -62,6 +62,7 @@ class stat(models.Model):
     extc_total = models.CharField(max_length=20)
     extc = models.CharField(max_length=20)
 
+
     def save(self,*args,**kwargs):
         if stat.objects.count() > 2:
             return ValidationError('No extra enteries can be added')
