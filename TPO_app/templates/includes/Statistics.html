@@ -6,10 +6,10 @@
 <link href="{% static '/css/styles.css' %}" rel="stylesheet">
 <title>{% block title%}Statistics{% endblock %}</title>
 {% block content %}
-<br>
-<h1 class="title has-text-centered">Companies Recruiting</h1>
+<br><br>
 <div class="tile is-ancestor">
     <div class="tile is-6 is-vertical is-parent">
+<h1 class="title has-text-centered">Companies Recruiting</h1>
         <div class="tile is-child box">
             <canvas id="horizontalBarChartCanvas"></canvas>
         </div>
@@ -163,8 +163,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
         integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg=="
         crossorigin="anonymous"></script>
-    <script src="{% static 'js/Chart.js' %}"></script>
-    <script src="{% static 'js/ChartHorizontal.js' %}"></script>
     <script>
     Chart.defaults.global.defaultFontFamily = "Lato";
 

@@ -66,6 +66,14 @@ class stat(models.Model):
     extc_total = models.CharField(max_length=20)
     extc = models.CharField(max_length=20)
 
+    def save(self, commit=True):
+        # here you define `mentor_name`. OK.
+        mentor_name = self.cleaned_data.get('mentor_name', None)
+        # here you redefine `mentor_name`. I guess it is a typo and should be `mentee_name`.
+        mentor_name = self.cleaned_data.get('mentee_name', None)
+        # And... you don't do anything with these variables.
+        return super(MentorForm, self).save(commit=commit)
+
 
     def save(self,*args,**kwargs):
         if stat.objects.count() > 2:
